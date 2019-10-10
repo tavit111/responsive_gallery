@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Art_Galery</title>
+  </head>
+  <body>
+    <style>
+      @import url(//db.onlinewebfonts.com/c/3ded6d5cbc72b0b0e95200ab6fb1b5ae?family=Viva+Beautiful);
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-family: "Viva Beautiful";
+        font-weight: 300;
+      }
+      .header {
+        background: rgb(248, 248, 82);
+        font-size: 2rem;
+        padding: 0.6em 0.3em 0;
+        line-height: 0.55;
+      }
+      .title {
+        font-size: 3rem;
+      }
+      .responsive {
+        /* width: 75vw; */
+        margin: 2rem 4rem;
+      }
+      .gallery {
+        background: rgb(240, 240, 235);
+        margin-left: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+        grid-gap: 4px;
+        justify-content: center;
+        padding: 2rem 1.9em;
+        box-shadow: 3px 2px 12px rgba(0, 0, 0, 0.4);
+      }
+      img {
+        width: 100%;
+      }
+      @media screen and (min-width: 610px) {
+        .header {
+          writing-mode: vertical-rl;
+          transform: rotate(180deg);
+          position: fixed;
+          top: 50px;
+          line-height: 0.7;
+          padding: 2rem 0.7rem 2rem 0rem;
+        }
+      }
+    </style>
+    <h1 class="header">variations on a grid</h1>
+    <section class="responsive">
+      <h1 class="title">responsive</h1>
+      <div class="gallery"></div>
+    </section>
+    <script>
+      let gallery = document.querySelector(".gallery");
+      let img;
+      for (i = 1; i < 21; i++) {
+        img = document.createElement("img");
+        gallery.appendChild(img);
+        img.src = "media/" + i + ".jpg";
+      }
+    </script>
+  </body>
+</html>
