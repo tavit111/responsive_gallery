@@ -28,7 +28,6 @@
         font-size: 3rem;
       }
       .responsive {
-        /* width: 75vw; */
         margin: 2rem 4rem;
       }
       .gallery {
@@ -43,6 +42,41 @@
       }
       img {
         width: 100%;
+        cursor: pointer;
+      }
+      .present {
+        position: fixed;
+        top: 0;
+        background: rgba(0, 0, 0, 0.85);
+        color: white;
+        width: 100vw;
+        height: 100vh;
+        display: none;
+        grid-template-columns: 52px 1fr auto;
+        grid-template-rows: min-content auto auto;
+        justify-content: end;
+        justify-items: center;
+      }
+      .present > img {
+        height: 80vh;
+        object-fit: contain;
+        grid-column: 2;
+        grid-row: 2/3;
+      }
+      .present > p {
+        grid-column: 2;
+        grid-row: 3;
+        margin: 1em 0 1em;
+      }
+      .x {
+        font-family: sans-serif;
+        font-size: 40px;
+        font-weight: 700;
+        grid-column: 3;
+        grid-row: 1;
+        padding-right: 30px;
+        align-self: start;
+        cursor: pointer;
       }
       @media screen and (min-width: 610px) {
         .header {
@@ -60,6 +94,13 @@
       <h1 class="title">responsive</h1>
       <div class="gallery"></div>
     </section>
+
+    <!-- IMAGE SELECTOR -->
+    <div class="present">
+      <span class="x">x</span>
+      <img src="" alt="" />
+      <p>description</p>
+    </div>
     <script>
       let gallery = document.querySelector(".gallery");
       let img;
@@ -68,6 +109,26 @@
         gallery.appendChild(img);
         img.src = "media/" + i + ".jpg";
       }
+      //IMAGE SELECTOR
+      let all_images = document.querySelectorAll(".gallery img");
+      let x = document.querySelector(".x");
+      let present = document.querySelector(".present");
+      let present_image = document.querySelector(".present > img");
+      //ON CLICK
+      function turnOffPresent() {
+        present.style.display = "none";
+      }
+      //turn on "present"
+      all_images.forEach(
+        img =>
+          (img.onclick = function() {
+            present_image.src = this.src;
+            present.style.display = "grid";
+          })
+      );
+      //turn off present
+      x.addEventListener("click", turnOffPresent);
+      document.addEventListener("keydown", turnOffPresent);
     </script>
   </body>
 </html>
